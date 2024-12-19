@@ -52,6 +52,12 @@ describe('Проверка авторизации', function () {
     cy.get('#messageHeader').should('be.visible');
     cy.get('#messageHeader').contains('Авторизация прошла успешно');
 })
+   it('Верный пароль и неверный логин', function () {
+      cy.get('#mail').type('shokokoko.ru');
+      cy.get('#pass').type('iLoveqastudio1');
+      cy.get('#loginButton').click();
+      cy.get('#messageHeader').should('be.visible');
+      cy.get('#messageHeader').contains('Такого логина или пароля нет');
 })
 
 
