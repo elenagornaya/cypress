@@ -46,7 +46,7 @@ describe('Проверка авторизации', function () {
 
   })
    it('Верный пароль и влияние регистра на логин', function () {
-    cy.get('#mail').type('GERMAN@DOLNIKOV.RU');
+    cy.get('#mail').type('GeRmAn@DOlNiKOv.RU');
     cy.get('#pass').type('iLoveqastudio1');
     cy.get('#loginButton').click();
     cy.get('#messageHeader').should('be.visible');
