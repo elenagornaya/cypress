@@ -31,13 +31,27 @@ describe('Проверка авторизации', function () {
         cy.get('#messageHeader').should('be.visible');
         cy.get('#messageHeader').contains('Нужно исправить проблему валидации');
     })
-
-       it('Восстановление пароля', function () {
+      it('Восстановление пароля', function () {
         cy.get('#forgotEmailButton').click();
         cy.get('#mailForgot').type('german@dolnikov.ru');
         cy.get('#restoreEmailButton').click();
         cy.get('#messageHeader').contains('Успешно отправили пароль на e-mail');
     })
+    it('Неверный пароль и неверный логин', function () {
+      cy.get('#mail').type('shokokoko.ru');
+      cy.get('#pass').type('iLoveqastudio1');
+      cy.get('#loginButton').click();
+      cy.get('#messageHeader').should('be.visible');
+      cy.get('#messageHeader').contains('Такого логина или пароля нет');
+
+  })
+   it('Верный пароль и влияние регистра на логин', function () {
+    cy.get('#mail').type('GERMAN@DOLNIKOV.RU');
+    cy.get('#pass').type('iLoveqastudio1');
+    cy.get('#loginButton').click();
+    cy.get('#messageHeader').should('be.visible');
+    cy.get('#messageHeader').contains('Авторизация прошла успешно');
+})
 })
 
 
