@@ -48,11 +48,21 @@ describe('Проверка авторизации', function () {
     cy.get('#messageHeader').contains('Такого логина или пароля нет');
   });
 
-  it('Верный пароль и влияние регистра на логин', function () {
-    cy.get('#mail').type('GeRmAn@DoLnIkOv.RU');
+ it('Верный пароль и влияние регистра на логин', function () {
+    console.log('Шаг 1: Заполнение поля email');
+    cy.get('#mail').type('german@dolnikov.ru');
+    
+    console.log('Шаг 2: Заполнение поля пароля');
     cy.get('#pass').type('iLoveqastudio1');
+    
+    console.log('Шаг 3: Нажатие на кнопку Вход');
     cy.get('#loginButton').click();
+    
+    console.log('Шаг 4: Ожидание появления сообщения');
     cy.get('#messageHeader').should('be.visible');
-    cy.get('#messageHeader').contains('Авторизация прошла успешно');
-  });
+    
+    console.log('Шаг 5: Проверка содержания сообщения');
+    cy.contains('#messageHeader', 'Авторизация прошла успешно');
 });
+})
+
